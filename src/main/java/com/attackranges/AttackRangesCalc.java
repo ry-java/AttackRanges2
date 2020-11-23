@@ -13,9 +13,7 @@ public class AttackRangesCalc {
 
     @Inject
     private Client client;
-
     private static final HashMap<Integer, Integer> idRange = new HashMap<>();
-
     static {
         //Crossbows
         idRange.put(9185, 7);
@@ -35,17 +33,17 @@ public class AttackRangesCalc {
         Player player = client.getLocalPlayer();
         PlayerComposition playerComp = player.getPlayerComposition();
         int itemID = playerComp.getEquipmentId(KitType.WEAPON);
-        System.out.println("We did this btw, itemID:" + itemID);
         return itemID;
     }
 
     public int getRange() {
 
-        int attackStyleVarbit = client.getVar(VarPlayer.ATTACK_STYLE);
-        if (attackStyleVarbit == 3) {
+        int attackStyleVarBit = client.getVar(VarPlayer.ATTACK_STYLE);
+        if (attackStyleVarBit == 3) {
             return 2 * (idRange.get(getID()) + 2);
+        } else {
+            return 2 * idRange.get(getID());
         }
-        return 2 * idRange.get(getID());
     }
 
 }

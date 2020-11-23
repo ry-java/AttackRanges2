@@ -15,13 +15,15 @@ import java.awt.*;
 class AttackRangesOverlay extends Overlay {
 
     private final Client client;
-    private final AttackRangesCalc range;
+    private final AttackRangesCalc rangesCalc;
     private int rangeInt;
+    private final Color fillArea;
 
     @Inject
-    private AttackRangesOverlay(Client client, AttackRangesCalc range) {
+    private AttackRangesOverlay(Client client, AttackRangesCalc rangesCalc) {
         this.client = client;
-        this.range = range;
+        this.rangesCalc = rangesCalc;
+        fillArea = new Color(0, 0, 0, 35);
         setPosition(OverlayPosition.DYNAMIC);
         setLayer(OverlayLayer.ABOVE_SCENE);
         setPriority(OverlayPriority.MED);
@@ -32,15 +34,14 @@ class AttackRangesOverlay extends Overlay {
     @Override
     public Dimension render(Graphics2D graphics) {
         final WorldPoint playerPos = client.getLocalPlayer().getWorldLocation();
-        rangeInt = range.getRange();
-        final Polygon tilearea = Perspective.getCanvasTileAreaPoly(client, LocalPoint.fromWorld(client, playerPos), rangeInt);
-        renderTile(graphics, tilearea);
+        rangeInt = rangesCalc.getRange();
+        final Polygon tileArea = Perspective.getCanvasTileAreaPoly(client, LocalPoint.fromWorld(client, playerPos), rangeInt);
+        renderTile(graphics, tileArea);
         return null;
     }
 
-    private void renderTile(final Graphics2D graphics, Polygon tilearea) {
-        final Point mouseposition = client.getMouseCanvasPosition();
-        final Color fillarea = new Color(0, 0, 0, 35);
-        OverlayUtil.renderHoverableArea(graphics, tilearea, mouseposition, fillarea, JagexColors.MENU_TARGET, JagexColors.MENU_TARGET);
+    private void renderTile(final Graphics2D graphics, Polygon tileArea) {
+        final Point mousePos = client.getMouseCanvasPosition();
+        OverlayUtil.renderHoverableArea(graphics, tileArea, mousePos, fillArea, JagexColors.CHAT_FC_TEXT_OPAQUE_BACKGROUND, JagexColors.TOOLTIP_BACKGROUND);
     }
 }
