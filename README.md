@@ -4,6 +4,10 @@ A plugin for Runelite that produces an overlay showing a user's maximum attack r
 Contains support for Long-Range and Rapid/Accurate attack styles
 
 Example of user moving into range to attack
+<p align="center">
+ <img width="600" height="200" src="range.gif">
+</p>
+
  ![](range.gif)
 
 
