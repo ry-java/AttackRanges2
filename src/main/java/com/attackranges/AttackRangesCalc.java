@@ -16,6 +16,11 @@ public class AttackRangesCalc {
     private static final HashMap<Integer, Integer> idRange = new HashMap<>();
     static {
         //Crossbows
+//        TODO FINISH CROSSBOW IDS
+//        TODO FINISH SHORTBOW IDS
+//        TODO FINISH LONGBOW IDS
+//        TODO FINISH KNIFE/DART IDS
+//        TODO FINISH OUTLIERS
         idRange.put(9185, 7);
         idRange.put(8880, 7);
         idRange.put(21012, 7);
