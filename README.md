@@ -5,13 +5,10 @@ Contains support for Long-Range and Rapid/Accurate attack styles
 
 Example of user moving into range to attack
 <p align="center">
- <img width="600" height="200" src="range.gif">
+ <img src="range.gif">
 </p>
 
- ![](range.gif)
-
-
-
 Example of a user switching between long-ranged and rapid
- ![](style.gif)
-
+<p align="center">
+ <img src="style.gif">
+</p>
