@@ -37,8 +37,7 @@ public class AttackRangesCalc {
     public int getID() {
         Player player = client.getLocalPlayer();
         PlayerComposition playerComp = player.getPlayerComposition();
-        int itemID = playerComp.getEquipmentId(KitType.WEAPON);
-        return itemID;
+        return playerComp.getEquipmentId(KitType.WEAPON);
     }
 
     public int getRange() {

@@ -16,7 +16,6 @@ class AttackRangesOverlay extends Overlay {
 
     private final Client client;
     private final AttackRangesCalc rangesCalc;
-    private int rangeInt;
     private final Color fillArea;
 
     @Inject
@@ -34,7 +33,7 @@ class AttackRangesOverlay extends Overlay {
     @Override
     public Dimension render(Graphics2D graphics) {
         final WorldPoint playerPos = client.getLocalPlayer().getWorldLocation();
-        rangeInt = rangesCalc.getRange();
+        int rangeInt = rangesCalc.getRange();
         final Polygon tileArea = Perspective.getCanvasTileAreaPoly(client, LocalPoint.fromWorld(client, playerPos), rangeInt);
         renderTile(graphics, tileArea);
         return null;
