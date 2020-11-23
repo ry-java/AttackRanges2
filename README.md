@@ -1,5 +1,5 @@
 # Attack Ranges
-A plugin for Runelite that produces an overlay showing a user's maximum attack range based on the weapon currently equip.
+A plugin for Runelite that produces an overlay showing a user's maximum attack range based on the weapon currently equipped.
 
 Contains support for Long-Range and Rapid/Accurate attack styles
 
