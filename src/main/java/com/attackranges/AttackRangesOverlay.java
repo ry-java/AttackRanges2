@@ -29,13 +29,17 @@ class AttackRangesOverlay extends Overlay {
 
     }
 
-
     @Override
     public Dimension render(Graphics2D graphics) {
-        final WorldPoint playerPos = client.getLocalPlayer().getWorldLocation();
-        int rangeInt = rangesCalc.getRange();
-        final Polygon tileArea = Perspective.getCanvasTileAreaPoly(client, LocalPoint.fromWorld(client, playerPos), rangeInt);
-        renderTile(graphics, tileArea);
+        if (client.getLocalPlayer() != null) {
+            WorldPoint playerPos = client.getLocalPlayer().getWorldLocation();
+            int rangeInt = rangesCalc.getRange();
+            LocalPoint localPoint = LocalPoint.fromWorld(client, playerPos);
+            if (localPoint != null) {
+                Polygon tileArea = Perspective.getCanvasTileAreaPoly(client, localPoint, rangeInt);
+                renderTile(graphics, tileArea);
+            }
+        }
         return null;
     }
 
