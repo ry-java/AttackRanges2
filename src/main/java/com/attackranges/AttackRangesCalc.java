@@ -1,8 +1,6 @@
 package com.attackranges;
 
 import net.runelite.api.Client;
-import net.runelite.api.Player;
-import net.runelite.api.PlayerComposition;
 import net.runelite.api.VarPlayer;
 import net.runelite.api.kit.KitType;
 
@@ -13,7 +11,7 @@ public class AttackRangesCalc {
 
     @Inject
     private Client client;
-    private static final HashMap<Integer, Integer> idRange = new HashMap<>();
+    private static final HashMap<Integer, Integer> ID_RANGES = new HashMap<>();
     static {
         //Crossbows
 //        TODO FINISH CROSSBOW IDS
@@ -21,33 +19,27 @@ public class AttackRangesCalc {
 //        TODO FINISH LONGBOW IDS
 //        TODO FINISH KNIFE/DART IDS
 //        TODO FINISH OUTLIERS
-        idRange.put(9185, 7);
-        idRange.put(8880, 7);
-        idRange.put(21012, 7);
-        idRange.put(21902, 7);
+        ID_RANGES.put(9185, 7);
+        ID_RANGES.put(8880, 7);
+        ID_RANGES.put(21012, 7);
+        ID_RANGES.put(21902, 7);
 
         //Karils
-        idRange.put(11785, 8);
-        idRange.put(4934, 8);
-        idRange.put(4935, 8);
-        idRange.put(4936, 8);
-        idRange.put(4937, 8);
+        ID_RANGES.put(11785, 8);
+        ID_RANGES.put(4934, 8);
+        ID_RANGES.put(4935, 8);
+        ID_RANGES.put(4936, 8);
+        ID_RANGES.put(4937, 8);
     }
 
     public int getID() {
-        Player player = client.getLocalPlayer();
-        PlayerComposition playerComp = player.getPlayerComposition();
-        return playerComp.getEquipmentId(KitType.WEAPON);
+
+        return (client.getLocalPlayer() != null ? client.getLocalPlayer().getPlayerComposition().getEquipmentId(KitType.WEAPON) : 0);
     }
 
     public int getRange() {
 
-        int attackStyleVarBit = client.getVar(VarPlayer.ATTACK_STYLE);
-        if (attackStyleVarBit == 3) {
-            return 2 * (idRange.get(getID()) + 2);
-        } else {
-            return 2 * idRange.get(getID());
+        return (client.getVar(VarPlayer.ATTACK_STYLE) == 3 ? 2 * (ID_RANGES.get(getID()) + 2) : 2 * ID_RANGES.get(getID()));
         }
-    }
 
 }
